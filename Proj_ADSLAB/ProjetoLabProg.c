@@ -55,6 +55,7 @@ int main(void){
                             if (qtdAluno >= TAM_ALUNO) {
                                     printf("Lista de alunos cheia\n");
                                 }else{
+
                                     printf("Digite a Matricula: \n");
                                     int matricula;
                                     scanf("%d", &matricula);
@@ -79,6 +80,7 @@ int main(void){
                                 printf("Lista de aluno vazia");
                             }else{
                                 for(int i = 0; i < qtdAluno; i++){
+                                    if(listarAluno[i].ativo == 1)
                                     printf("Matricula: %d\n", listarAluno[i].matricula);
                                 }
                             }
@@ -90,6 +92,35 @@ int main(void){
                         }
                         case 4:{
                             printf("Excluir Aluno\n");
+
+                            printf("Digite a Matricula: \n");
+                            int matricula;
+                            scanf("%d", &matricula);
+                            int achou = 0;
+                            if ( matricula < 0){
+                                printf("Matricula Invalida");
+                            }else{
+                                for(int i = 0; i < qtdAluno; i++){
+                                   if (matricula == listarAluno[i].matricula) {
+                                        //Exclusão lógica
+                                        listarAluno[i].ativo = -1;
+
+                                        for(int j = i; j < qtdAluno - 1; j++){ //shift
+                                            listarAluno[j].matricula = listarAluno[j+1].matricula;
+                                            listarAluno[j].sexo = listarAluno[j+1].sexo;
+                                            listarAluno[j].ativo = listarAluno[j+1].ativo;
+                                        }
+                                        qtdAluno--;
+                                        achou = 1;
+                                        break;
+                                   }
+                                }
+                                if(achou){
+                                    printf("Aluno excluido com sucesso\n");
+                                }else {
+                                    printf("Matricula inexistente\n");
+                                }
+                            }
                             break;
                         }
                         default:{
