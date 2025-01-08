@@ -66,7 +66,7 @@ void inserir_no_meio(No **lista, int num, int ant){
 }
 
 void imprimir(No *no){
-    printf("\n\tLista:");
+    printf("\n\tLista: ");
     while(no){
         printf("%d ", no->valor);
         no = no->proximo;
@@ -94,12 +94,14 @@ int main(){
             inserir_no_fim(&lista, valor);
             break;
         case 3:
-            printf("Digite um valor e o valor de referencia: ");
-            scanf("%d%d", &valor, &anterior);
+            printf("Digite um valor: \n");
+            scanf("%d", &valor);
+            printf("Digite um valor de referencia: \n");
+            scanf("%d", &anterior);
             inserir_no_meio(&lista, valor, anterior);
             break;
         case 4:
-            imprimir();
+            imprimir(lista);
             break;
         default:
             if(opcao != 0)
