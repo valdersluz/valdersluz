@@ -13,6 +13,16 @@ int main(){
 
     forma geral:
     int feof(FILE *ponteiro);
+
+    OBS:
+        while(1){
+            fscanf(ponteiro, "%d", &variavel);
+            if(feof(ponteiro)){
+                break;
+            }
+            printf("%d\n", n);
+        }
+
     */
 
     int main(){
