@@ -1,5 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define typeof(var) _Generic( (var),\
+char: "Char",\
+int: "Integer",\
+float: "Float",\
+char *: "String",\
+void *: "Pointer",\
+default: "Undefined")
 
 typedef struct Node {
     int dados;
@@ -10,6 +17,7 @@ typedef struct Node {
 
 Node* createNode(int data){
     Node* novoNo = (Node*) malloc(sizeof(Node));
+// (tipo) (variavel do tipo ponteiro de struct) = casting e malloc
 
     if(novoNo == NULL){
         printf("Erro: Falha ao criar o novo nó.\n");
@@ -60,7 +68,7 @@ void inserirNoMeio(Node* prevNode, int data){
 
 void imprimirLista(Node* node){
     while(node != NULL){
-        printf("%d ->", node->data);
+        printf("%d ->", node->dados);
         node = node->next;
     }
     printf("NULL\n");
@@ -69,7 +77,16 @@ void imprimirLista(Node* node){
 int main(){
     Node* cabeca = NULL;
 
+    inserirNoComeco(&cabeca, 300);
+    inserirNoComeco(&cabeca, 301);
+    inserirNoFim(&cabeca, 90);
+    inserirNoMeio(cabeca->next, 0);
+    inserirNoMeio(cabeca->next, 444);
+    inserirNoMeio(cabeca->next, 555);
+
+
     /*
+        printf("%s\n", typeof(cabeca));
 
     inserir coisas neste meio
 
