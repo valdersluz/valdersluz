@@ -68,10 +68,20 @@ void inserirNoMeio(Node* prevNode, int data){
 
 void imprimirLista(Node* node){
     while(node != NULL){
-        printf("%d ->", node->dados);
+        printf("[%d] ponteiro aponta para -> ", node->dados);
         node = node->next;
     }
     printf("NULL\n");
+}
+
+void libera_lista(Node *cabeca){
+    Node *paux;
+
+    while (cabeca != NULL){
+        paux = cabeca;
+        cabeca = cabeca->next;
+        free(paux);
+    }
 }
 
 int main(){
@@ -94,5 +104,9 @@ int main(){
 
     printf("Lista encadeada: ");
     imprimirLista(cabeca);
+
+    libera_lista(cabeca);
+
+    return 0;
 
 }
