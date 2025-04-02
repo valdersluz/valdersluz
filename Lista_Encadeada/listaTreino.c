@@ -67,6 +67,11 @@ void inserirNoMeio(Node* prevNode, int data){
 }
 
 void imprimirLista(Node* node){
+
+    if(node == NULL){
+        printf("Lista vazia.\n");
+        return;
+    }
     while(node != NULL){
         printf("[%d] ponteiro aponta para -> ", node->dados);
         node = node->next;

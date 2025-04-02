@@ -22,6 +22,10 @@ No* createNo(int dados){
 
 void imprimirConteudoLista(No* noPonteiro){
 
+    if(noPonteiro == NULL){
+        printf("Lista Vazia.\n");
+        return;
+    }
     while(noPonteiro != NULL){
         printf("%d ->", noPonteiro->campo_form);
         noPonteiro = noPonteiro->prox;
@@ -39,16 +43,25 @@ void liberarLista(No* noPonteiro){
         noPonteiro = noPonteiro->prox;
         free(pAuxiliar);
     }
+}
+
+void inserirInicio(No** headEndereco, int data){
+    No* novoNo = createNo(data); //cria um ponteiro do tipo No* e chama a função criar
+
+    novoNo->prox = *headEndereco;
+    *headEndereco = novoNo;
+}
+
+void inserirFimLista(){
 
 
 }
 
 
-
-
 int main(){
     No* primeiroNoIniciado = NULL;
     int escolha;
+    int num;
 
     for( ; ; ){
         printf("Qual a sua escolha? \n");
@@ -62,7 +75,12 @@ int main(){
 
         switch(escolha){
             case 1 :
-                printf("opcao 1\n");
+                printf("Opcao 1: Inserir no inicio\n");
+                printf("\n");
+                printf("Qual o valor? ");
+                scanf("%d", &num);
+
+                inserirInicio(&primeiroNoIniciado, num);
                 imprimirConteudoLista(primeiroNoIniciado);
                 break;
 
@@ -79,6 +97,8 @@ int main(){
             case 4 :
                 printf("opcao 4\n");
                 imprimirConteudoLista(primeiroNoIniciado);
+                liberarLista(primeiroNoIniciado);
+                primeiroNoIniciado = NULL;
                 break;
             case 5 :
                 printf("opcao 5\n");
